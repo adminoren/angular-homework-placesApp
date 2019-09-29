@@ -1,0 +1,26 @@
+<mat-nav-list *ngIf="places$ | async as places; else loader">
+  <mat-list-item *ngFor="let place of places"
+    (click)="SetSelectedPlace(place)">
+    {{ place.name }}
+  </mat-list-item>
+</mat-nav-list>
+<div *ngIf="selectedPlace != null">
+  <img mat-card-image [src]="selectedPlace?.imgUrl" [alt]="selectedPlace?.name">
+  <mat-card-content>
+    <div>
+      <h5>Address:</h5>
+      <p>{{ selectedPlace.address }}</p>
+    </div>
+    <div>
+      <h5>Phone:</h5>
+      <p>{{ selectedPlace.phone }}</p>
+    </div>
+  </mat-card-content>
+  
+</div>
+
+<ng-template #loader>
+  <mat-progress-spinner></mat-progress-spinner>
+</ng-template>
+
+
